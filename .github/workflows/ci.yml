@@ -1,0 +1,21 @@
+name: RBC SRE Quality Gate
+
+on: [push] # Every time you push code, this runs!
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Security Audit (SRE Practice!)
+        run: npm audit # This checks for known vulnerabilities
